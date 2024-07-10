@@ -1,9 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('GitHub Stage') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                git branch: 'master', credentialsId: 'git-credential', url: 'https://github.com/anirudh-abhi/maven-build.git'
+            }
+        }
+        stage('Maven Build Stage') {
+            steps {
+                script {
+                    def mavenHome = tool name: "maven software", type: "maven"
+                    def mavenCMD = "${mavenHome}/bin/mvn"
+                    sh "${mavenCMD} clean package"
+                }
             }
         }
     }
