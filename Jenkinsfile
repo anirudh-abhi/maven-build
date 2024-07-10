@@ -5,6 +5,9 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+     environment {
+        MAVEN_OPTS = '-Dmaven.repo.local=$WORKSPACE/.m2/repository'
+    }
     stages {
         stage('Build') {
             steps {
