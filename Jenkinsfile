@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Maven Build Stage') {
             environment {
-                MVN_HOME = tool name: 'Maven', type: 'maven'
+                MVN_HOME = tool name: 'maven software', type: 'maven'
             }
             steps {
                 script {
